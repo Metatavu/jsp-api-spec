@@ -5,486 +5,7 @@ info:
 security:
   - bearerAuth: []
 paths:
-  /orders:
-    get:
-      operationId: listOrders
-      summary: List orders.
-      description: Lists orders
-      tags:
-        - Orders
-      parameters:
-        - name: status
-          in: query
-          description: Filter by order status
-          schema:
-            $ref: "#/components/schemas/OrderStatus"
-      responses:
-        "200":
-          description: A list of orders
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createOrder
-      summary: Create an order.
-      description: Creates a new Order
-      tags:
-        - Orders
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Order"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created order
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateOrder
-      summary: Updates an order.
-      description: Updates an order.
-      tags:
-        - Orders
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Order"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Updated Order
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /products:
-    get:
-      operationId: listProducts
-      summary: List products.
-      description: Lists products
-      tags:
-        - Products
-      responses:
-        "200":
-          description: A product list
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Product"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createProduct
-      summary: Create a Product.
-      description: Creates a new Product
-      tags:
-        - Products
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Product"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created Product
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Product"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updatesProduct
-      summary: Updates a Product.
-      description: Updates a Product
-      tags:
-        - Products
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Product"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Updated prodcut
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Product"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /images:
-    get:
-      operationId: getImages
-      summary: List images.
-      description: Lists images
-      tags:
-        - Images
-      responses:
-        "200":
-          description: A product list
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Image"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createImage
-      summary: Create an Image
-      description: Creates a new Image
-      tags:
-        - Images
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Image"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created Image
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Product"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateImage
-      summary: Updates Image.
-      description: Updates an Image
-      tags:
-        - Images
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Image"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Updated Image
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Image"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /tags:
-    get:
-      operationId: listTags
-      summary: List tag products.
-      description: Lists tags
-      tags:
-        - Tags
-      responses:
-        "200":
-          description: A tag list
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Tag"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createTag
-      summary: Create a Tag.
-      description: Creates a new tag
-      tags:
-        - Tags
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Tag"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created Tag
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Tag"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateTag
-      summary: Updates a Tag.
-      description: Updates a tag
-      tags:
-        - Tags
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Tag"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Updated tag
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Tag"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    delete:
-      operationId: deleteTag
-      summary: Delete Tag.
-      description: Deletes a tag
-      tags:
-        - Tags
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Tag"
-        description: Payload
-        required: true
-      responses:
-        "204":
-          description: Success
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+
   /system/ping:
     get:
       summary: System ping endpoint
@@ -498,6 +19,522 @@ paths:
             text/plain:
               schema:
                 description: Returns PING
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /orders:
+    get:
+      summary: List orders
+      operationId: listOrders
+      tags:
+       - Orders
+      responses:
+        '200':
+          description: An array of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    post:
+      summary: Create a new order
+      operationId: createOrder
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: A created order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'      
+  
+  /orders/{orderId}:
+    get:
+      summary: Find an order
+      operationId: findOrder
+      parameters: 
+        - name: orderId
+          in: path
+          description: Id of an order to find
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Orders
+      responses:
+        '200':
+          description: A found order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+    put:
+      summary: Update an order
+      operationId: updateOrder
+      parameters: 
+        - name: orderId
+          in: path
+          description: Id of an order to update
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: An updated order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 
+                
+    delete:
+      summary: Delete an order
+      operationId: deleteOrder
+      parameters: 
+        - name: orderId
+          in: path
+          description: Id of an order to dlete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Orders
+      responses:
+        '204':
+          description: An empty response indicating a successful removal
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /doors:
+    get:
+      summary: List door infos
+      operationId: listDoorInfos
+      tags:
+       - Doors
+      responses:
+        '200':
+          description: An array of door infos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DoorsInfo'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /doors/{doorsInfoId}:
+    get:
+      summary: Find a door info
+      operationId: findDoorInfo
+      parameters: 
+        - name: doorsInfoId
+          in: path
+          description: Id of an info object to find
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Doors
+      responses:
+        '200':
+          description: Found doors info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DoorsInfo'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /counterTops:
+    get:
+      summary: List countertops
+      operationId: listCounterTops
+      tags:
+       - CounterTops
+      responses:
+        '200':
+          description: An array of countertops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CounterTop'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /counterTops/{counterTopId}:
+    get:
+      summary: Find a countertop
+      operationId: findCounterTop
+      parameters: 
+        - name: counterTopId
+          in: path
+          description: Id of an countertop find
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - CounterTops
+      responses:
+        '200':
+          description: A found countertop
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CounterTop'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /handles:
+    get:
+      summary: List handles
+      operationId: listHandles
+      tags:
+       - Handles
+      responses:
+        '200':
+          description: An array of handles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Handle'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /handles/{handleId}:
+    get:
+      summary: Find a handle
+      operationId: findHandle
+      parameters: 
+        - name: handleId
+          in: path
+          description: Id of an handle to find
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Handles
+      responses:
+        '200':
+          description: A found handle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Handle'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /drawers:
+    get:
+      summary: List drawer infos
+      operationId: listDrawerInfos
+      tags:
+       - Drawers
+      responses:
+        '200':
+          description: An array of drawer infos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DrawersInfo'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /drawers/{drawersInfoId}:
+    get:
+      summary: Find a drawers info
+      operationId: findDrawersInfo
+      parameters: 
+        - name: drawersInfoId
+          in: path
+          description: Drawers info id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Drawers
+      responses:
+        '200':
+          description: A found drawers info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrawersInfo'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+ 
+  /genericProducts:
+    get:
+      summary: List generic products
+      operationId: listGenericProducts
+      tags:
+       - GenericProducts
+      parameters: 
+        - name: productType
+          in: query
+          description: Filter products by their type
+          required: false
+          schema:
+            $ref: '#/components/schemas/GenericProductType'
+      responses:
+        '200':
+          description: An array of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GenericProduct'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /genericProducts/{productId}:
+    get:
+      summary: Find a generic product
+      operationId: findGenericProduct
+      parameters: 
+        - name: productId
+          in: path
+          description: Product id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - GenericProducts
+      responses:
+        '200':
+          description: A found product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericProduct'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /installations:
+    get:
+      summary: List installations
+      operationId: listInstallations
+      tags:
+        - Installations
+      responses:
+        '200':
+          description: An array of installations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GenericProduct'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /installations/{installationId}:
+    get:
+      summary: Find an installation
+      operationId: findInstallation
+      parameters: 
+        - name: installationId
+          in: path
+          description: Installation id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Installations
+      responses:
+        '200':
+          description: Found installation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Installation'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /files:
+    get:
+      summary: List files
+      operationId: listFiles
+      tags:
+        - Files
+      responses:
+        '200':
+          description: An array of files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileInformation'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /files/{fileId}:
+    get:
+      summary: Find a file
+      operationId: findFile
+      parameters: 
+        - name: fileId
+          in: path
+          description: Id of a file to find
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Files
+      responses:
+        '200':
+          description: A found file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInformation'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /files/{fileId}/download:
+    get:
+      summary: Download a file
+      operationId: downloadFile
+      parameters: 
+        - name: fileId
+          in: path
+          description: File id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+        - Files
+      responses:
+        '200':
+          description: Downloaded file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
         default:
           description: unexpected error
           content:
@@ -524,153 +561,240 @@ components:
           format: int32
         message:
           type: string
+    
+    CounterTop:
+      type: object
+      required:
+        - modelName
+        - thickness
+        - type
+      properties:
+        id:
+          type: string
+          format: uuid
+        modelName:
+          type: string
+        thickness:
+          type: string
+        type:
+          $ref: '#/components/schemas/CounterTopType'
+    
+    DoorsInfo:
+      type: object
+      required:
+        - isGlassDoor
+        - doors
+      properties:
+        id:
+          type: string
+          format: uuid
+        isGlassDoor:
+          type: boolean
+        glassColor:
+          type: string
+        doorModels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DoorModel'
+    
+    DoorModel:
+      type: object
+      required:
+        - name
+        - color
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+  
+    Handle:
+      type: object
+      required:
+        - doorModelName
+        - color
+        - markedInImages
+      properties:
+        id: 
+          type: string
+          format: uuid
+        doorModelName:
+          type: string
+        color:
+          type: string
+        markedInImages:
+          type: boolean
+    
+    DrawersInfo:
+      type: object
+      required:
+        - defaultModerators
+        - trashbins
+        - markedInImages
+        - additionalInformation
+        - cutleryCompartments
+      properties:
+        id:
+          type: string
+          format: uuid
+        defaultModerators:
+          type: boolean
+        trashbins:
+          type: string
+        cutleryCompartments:
+          type: string
+        markedInImages:
+          type: boolean
+        additionalInformation:
+          type: string
           
-    Product:
+    CounterTopType:
+      type: string
+      enum:
+        - TR
+        - ST
+        - ABS
+        
+    GenericProduct:
+      type: object
+      required:
+        - name
+        - supplier
+        - type
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        supplier:
+          type: string
+        type:
+          $ref: '#/components/schemas/GenericProductType'
+    
+    GenericProductType:
+      type: string
+      enum:
+        - DOMESTIC_APPLIANCE
+        - SINK
+        - ELECTRIC
+        - INTERMEDIATE_SPACE
+        - OTHER
+    
+    Installation:
+      type: object
+      required:
+       - isCustomerInstallation
+       - additionalInforamtion
+      properties:
+        id:
+          type: string
+          format: uuid
+        isCustomerInstallation:
+          type: boolean
+        additionalInformation:
+          type: string
+    
+    FileInformation:
       type: object
       required:
         - name
       properties:
-        id:
+        id: 
           type: string
           format: uuid
-          readOnly: true
         name:
           type: string
-        description:
-          type: string
-        images:
-          type: array
-          items:
-            $ref: "#/components/schemas/Image"
-        tags:
-          type: array
-          items:
-            $ref: "#/components/schemas/Tag"
-        creatorId:
-          type: string
-          format: uuid
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
         modifiedAt:
           type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
-          
-    Tag:
+    
+    OrderInfo:
       type: object
       required:
-        - name
+        - customer
+        - email
+        - deliveryAddress
+        - phoneNumber
+        - city
+        - socialMediaPermission
+        - room
+        - deliveryTime
+        - additionalInformation
       properties:
-        id:
+        customer:
           type: string
-          format: uuid
-          readOnly: true
-        name:
+        email:
           type: string
-        creatorId:
+        deliveryAddress:
           type: string
-          format: uuid
-          readOnly: true
-        lastModifierId:
+        phoneNumber:
           type: string
-          format: uuid
-          readOnly: true
-        createdAt:
+        city:
           type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        modifiedAt:
+        socialMediaPermission:
+          type: boolean
+        room:
+          type: string
+        deliveryTime:
           type: string
           format: date-time
-          description: Date modified
-          readOnly: true
-          
-    Image:
-      type: object
-      properties:
-        id:
+        additionalInformation:
           type: string
-          format: uuid
-          readOnly: true
-        url:
-          type: string
-          format: url
-        name:
-          type: string
-        description:
-          type: string
-        creatorId:
-          type: string
-          format: uuid
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
-          
+    
     Order:
       type: object
       properties:
         id:
           type: string
           format: uuid
-          readOnly: true
-        name:
-          type: string
-        status:
-          $ref: "#/components/schemas/OrderStatus"
-        customerEmails:
+        orderInfo:
+          $ref: '#/components/schemas/OrderInfo'
+        doors:
+          $ref: '#/components/schemas/DoorsInfo'
+        handles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Handle'
+        counterTops:
+          type: array
+          items:
+            $ref: '#/components/schemas/CounterTop'
+        exceptionalNotes:
           type: array
           items:
             type: string
-            format: email
-        products:
+        drawersInfo:
+          $ref: '#/components/schemas/DrawersInfo'
+        domesticApplicances:
           type: array
           items:
-            $ref: "#/components/schemas/Product"
-        creatorId:
+            $ref: '#/components/schemas/GenericProduct'
+        otherProducts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericProduct'
+        intermediateSpaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericProduct'
+        sinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericProduct'
+        electricProducts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericProduct'
+        installation:
+          $ref: '#/components/schemas/Installation'
+        additionalInformation:
           type: string
-          format: uuid
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
-          
-    OrderStatus:
-      type: string
-      enum:
-        - draft
-        - offer
-        - order
-          
+        customerFiles:
+          type: array
+          items:
+             $ref: '#/components/schemas/FileInformation'
+        orderFiles:
+          type: array
+          items:
+             $ref: '#/components/schemas/FileInformation'
+        
