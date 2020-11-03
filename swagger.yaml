@@ -628,7 +628,6 @@ components:
     DrawersInfo:
       type: object
       required:
-        - defaultModerators
         - trashbins
         - markedInImages
         - additionalInformation
@@ -637,8 +636,6 @@ components:
         id:
           type: string
           format: uuid
-        defaultModerators:
-          type: boolean
         trashbins:
           type: string
         cutleryCompartments:
