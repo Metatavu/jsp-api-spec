@@ -1034,7 +1034,7 @@ components:
             $ref: '#/components/schemas/GenericProduct'
         installation:
           $ref: '#/components/schemas/Installation'
-        additionalInformation:
+        moreInformation:
           type: string
         customerFiles:
           type: array
