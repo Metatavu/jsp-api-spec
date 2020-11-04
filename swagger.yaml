@@ -1006,7 +1006,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CounterTop'
-        exceptionalNotes:
+        exceptionsFromPlans:
           type: array
           items:
             type: string
