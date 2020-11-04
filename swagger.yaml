@@ -1012,7 +1012,7 @@ components:
             type: string
         drawersInfo:
           $ref: '#/components/schemas/DrawersInfo'
-        domesticApplicances:
+        domesticAppliances:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
