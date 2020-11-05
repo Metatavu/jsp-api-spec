@@ -524,7 +524,7 @@ paths:
           description: Filter products by their type
           required: false
           schema:
-            $ref: '#/components/schemas/GenericProductType'
+            type: string
       responses:
         '200':
           description: An array of products
