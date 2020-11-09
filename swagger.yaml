@@ -1088,8 +1088,8 @@ components:
       type: object
       required:
         - orderInfo
-        - spine
-        - spineAdditionalInformation
+        - counterFrame
+        - counterFrameAdditionalInformation
         - doors
         - doorsAdditionalInformation
         - handles
