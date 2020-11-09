@@ -219,19 +219,19 @@ paths:
   
   /doors:
     get:
-      summary: List door infos
-      operationId: listDoorInfos
+      summary: List doors
+      operationId: listDoors
       tags:
        - Doors
       responses:
         '200':
-          description: An array of door infos
+          description: An array of doors
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DoorsInfo'
+                  $ref: '#/components/schemas/Door'
         '400':
           description: Invalid request error
           content:
@@ -251,12 +251,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   
-  /doors/{doorsInfoId}:
+  /doors/{doorId}:
     get:
-      summary: Find a door info
-      operationId: findDoorInfo
+      summary: Find a door 
+      operationId: findDoor
       parameters: 
-        - name: doorsInfoId
+        - name: doorId
           in: path
           description: Id of an info object to find
           required: true
@@ -267,11 +267,11 @@ paths:
        - Doors
       responses:
         '200':
-          description: Found doors info
+          description: Found door
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DoorsInfo'
+                $ref: '#/components/schemas/Door'
         '400':
           description: Invalid request error
           content:
@@ -607,7 +607,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GenericProduct'
+                  $ref: '#/components/schemas/Installation'
         '400':
           description: Invalid request error
           content:
@@ -666,6 +666,81 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  
+  /spines:
+    get:
+      summary: List ispines
+      operationId: listSpines
+      tags:
+        - Spines
+      responses:
+        '200':
+          description: An array of spines
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spine'
+        '400':
+          description: Invalid request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /spines/{spineId}:
+    get:
+      summary: Find a spine
+      operationId: findSpine
+      parameters: 
+        - name: spineId
+          in: path
+          description: Spine id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      tags:
+       - Spine
+      responses:
+        '200':
+          description: Found spine
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spine'
+        '400':
+          description: Invalid request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
   
   /files:
     get:
@@ -819,35 +894,27 @@ components:
         type:
           $ref: '#/components/schemas/CounterTopType'
     
-    DoorsInfo:
+
+    Door:
       type: object
       required:
+        - modelName
+        - doorColor
         - isGlassDoor
-        - doors
+        - glassColor
       properties:
         id:
           type: string
           format: uuid
+        modelName:
+          type: string
+        doorColor:
+          type: string
         isGlassDoor:
           type: boolean
         glassColor:
           type: string
-        doorModels:
-          type: array
-          items:
-            $ref: '#/components/schemas/DoorModel'
-    
-    DoorModel:
-      type: object
-      required:
-        - name
-        - color
-      properties:
-        name:
-          type: string
-        color:
-          type: string
-  
+
     Handle:
       type: object
       required:
@@ -961,11 +1028,14 @@ components:
         - customer
         - email
         - deliveryAddress
+        - homeAddress
         - phoneNumber
         - city
         - socialMediaPermission
         - room
         - deliveryTime
+        - billingAddress
+        - isHomeBillingAddress
         - additionalInformation
       properties:
         customer:
@@ -974,6 +1044,12 @@ components:
           type: string
         deliveryAddress:
           type: string
+        homeAddress:
+          type: string
+        billingAddress:
+          type: string
+        isHomeBillingAddress:
+          type: boolean
         phoneNumber:
           type: string
         city:
@@ -988,50 +1064,113 @@ components:
         additionalInformation:
           type: string
     
+    Spine:
+      type: object
+      required:
+        - color
+        - cornerStripe
+        - plinth
+        - extraSide
+      properties:
+        id:
+          type: string
+          format: uuid
+        color:
+          type: string
+        cornerStripe:
+          type: string
+        plinth:
+          type: string
+        extraSide:
+          type: string
+    
     Order:
       type: object
+      required:
+        - orderInfo
+        - spine
+        - spineAdditionalInformation
+        - doors
+        - doorsAdditionalInformation
+        - handles
+        - handlesAdditionalInformation
+        - counterTops
+        - counterTopsAdditionalInformation
+        - drawersInfo
+        - domesticAppliance
+        - domesticAppliancesAdditionalInformation
+        - otherProducts
+        - otherProductsAdditionalInformation
+        - intermediateSpaces
+        - intermediataeSpacesAdditionalInformation
+        - sinks
+        - sinksAdditionalInformation
+        - electricProducts
+        - electricProductsAdditionalInformation
+        - installation
+        - moreInformation
+        - customerFIles
+        - orderFiles
       properties:
         id:
           type: string
           format: uuid
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
+        spine:
+           $ref: '#/components/schemas/Spine'
+        spineAdditionalInformation:
+          type: string
         doors:
-          $ref: '#/components/schemas/DoorsInfo'
+          type: array
+          items:
+            $ref: '#/components/schemas/Door'
+        doorsAdditionalInformation:
+          type: string
         handles:
           type: array
           items:
             $ref: '#/components/schemas/Handle'
+        handlesAdditionalInformation:
+          type: string
         counterTops:
           type: array
           items:
             $ref: '#/components/schemas/CounterTop'
-        exceptionsFromPlans:
-          type: array
-          items:
-            type: string
+        counterTopsAdditionalInformation:
+          type: string
         drawersInfo:
           $ref: '#/components/schemas/DrawersInfo'
         domesticAppliances:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
+        domesticAppliancesAdditionalInformation:
+          type: string
         otherProducts:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
+        otherProductsAdditionalInformation:
+          type: string
         intermediateSpaces:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
+        intermediateSpacesAdditionalInformation:
+          type: string
         sinks:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
+        sinksAdditionalInformation:
+          type: string
         electricProducts:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
+        electricProductsAdditionalInformation:
+          type: string
         installation:
           $ref: '#/components/schemas/Installation'
         moreInformation:
