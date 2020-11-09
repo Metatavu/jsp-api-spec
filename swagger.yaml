@@ -1083,13 +1083,14 @@ components:
           type: string
         extraSide:
           type: string
+        additionalInformation:
+          type: string
     
     Order:
       type: object
       required:
         - orderInfo
         - counterFrame
-        - counterFrameAdditionalInformation
         - doors
         - doorsAdditionalInformation
         - handles
@@ -1097,7 +1098,7 @@ components:
         - counterTops
         - counterTopsAdditionalInformation
         - drawersInfo
-        - domesticAppliance
+        - domesticAppliances
         - domesticAppliancesAdditionalInformation
         - otherProducts
         - otherProductsAdditionalInformation
@@ -1119,8 +1120,6 @@ components:
           $ref: '#/components/schemas/OrderInfo'
         counterFrame:
            $ref: '#/components/schemas/CounterFrame'
-        counterFrameAdditionalInformation:
-          type: string
         doors:
           type: array
           items:
