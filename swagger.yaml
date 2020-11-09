@@ -667,21 +667,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   
-  /spines:
+  /counterFrames:
     get:
-      summary: List ispines
-      operationId: listSpines
+      summary: List counter frames
+      operationId: listCounterFrames
       tags:
-        - Spines
+        - CounterFrames
       responses:
         '200':
-          description: An array of spines
+          description: An array of counter frames
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Spine'
+                  $ref: '#/components/schemas/CounterFrame'
         '400':
           description: Invalid request error
           content:
@@ -701,27 +701,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   
-  /spines/{spineId}:
+  /counterFrames/{counterFrameId}:
     get:
-      summary: Find a spine
-      operationId: findSpine
+      summary: Find a counter frame
+      operationId: findCounterFrame
       parameters: 
-        - name: spineId
+        - name: counterFrameId
           in: path
-          description: Spine id
+          description: Counter frame id
           required: true
           schema:
             type: string
             format: uuid
       tags:
-       - Spine
+       - CounterFrames
       responses:
         '200':
-          description: Found spine
+          description: Found counter frame
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Spine'
+                $ref: '#/components/schemas/CounterFrame'
         '400':
           description: Invalid request error
           content:
@@ -1064,7 +1064,7 @@ components:
         additionalInformation:
           type: string
     
-    Spine:
+    CounterFrame:
       type: object
       required:
         - color
@@ -1117,9 +1117,9 @@ components:
           format: uuid
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
-        spine:
-           $ref: '#/components/schemas/Spine'
-        spineAdditionalInformation:
+        counterFrame:
+           $ref: '#/components/schemas/CounterFrame'
+        counterFrameAdditionalInformation:
           type: string
         doors:
           type: array
@@ -1195,4 +1195,3 @@ components:
         modifierId:
           type: string
           format: uuid
-        
