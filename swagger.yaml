@@ -219,19 +219,19 @@ paths:
   
   /doors:
     get:
-      summary: List doors
-      operationId: listDoors
+      summary: List door infos
+      operationId: listDoorInfos
       tags:
        - Doors
       responses:
         '200':
-          description: An array of doors
+          description: An array of door infos
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Door'
+                  $ref: '#/components/schemas/DoorsInfo'
         '400':
           description: Invalid request error
           content:
@@ -251,12 +251,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   
-  /doors/{doorId}:
+  /doors/{doorsInfoId}:
     get:
-      summary: Find a door 
-      operationId: findDoor
+      summary: Find a door info
+      operationId: findDoorInfo
       parameters: 
-        - name: doorId
+        - name: doorsInfoId
           in: path
           description: Id of an info object to find
           required: true
@@ -267,11 +267,11 @@ paths:
        - Doors
       responses:
         '200':
-          description: Found door
+          description: Found doors info
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Door'
+                $ref: '#/components/schemas/DoorsInfo'
         '400':
           description: Invalid request error
           content:
@@ -607,7 +607,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Installation'
+                  $ref: '#/components/schemas/GenericProduct'
         '400':
           description: Invalid request error
           content:
@@ -666,81 +666,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
-  /counterFrames:
-    get:
-      summary: List counter frames
-      operationId: listCounterFrames
-      tags:
-        - CounterFrames
-      responses:
-        '200':
-          description: An array of counter frames
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CounterFrame'
-        '400':
-          description: Invalid request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: Unauthorized request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  
-  /counterFrames/{counterFrameId}:
-    get:
-      summary: Find a counter frame
-      operationId: findCounterFrame
-      parameters: 
-        - name: counterFrameId
-          in: path
-          description: Counter frame id
-          required: true
-          schema:
-            type: string
-            format: uuid
-      tags:
-       - CounterFrames
-      responses:
-        '200':
-          description: Found counter frame
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CounterFrame'
-        '400':
-          description: Invalid request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: Unauthorized request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  
   
   /files:
     get:
@@ -894,27 +819,35 @@ components:
         type:
           $ref: '#/components/schemas/CounterTopType'
     
-
-    Door:
+    DoorsInfo:
       type: object
       required:
-        - modelName
-        - doorColor
         - isGlassDoor
-        - glassColor
+        - doors
       properties:
         id:
           type: string
           format: uuid
-        modelName:
-          type: string
-        doorColor:
-          type: string
         isGlassDoor:
           type: boolean
         glassColor:
           type: string
-
+        doorModels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DoorModel'
+    
+    DoorModel:
+      type: object
+      required:
+        - name
+        - color
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+  
     Handle:
       type: object
       required:
@@ -1028,14 +961,11 @@ components:
         - customer
         - email
         - deliveryAddress
-        - homeAddress
         - phoneNumber
         - city
         - socialMediaPermission
         - room
         - deliveryTime
-        - billingAddress
-        - isHomeBillingAddress
         - additionalInformation
       properties:
         customer:
@@ -1044,12 +974,6 @@ components:
           type: string
         deliveryAddress:
           type: string
-        homeAddress:
-          type: string
-        billingAddress:
-          type: string
-        isHomeBillingAddress:
-          type: boolean
         phoneNumber:
           type: string
         city:
@@ -1064,113 +988,50 @@ components:
         additionalInformation:
           type: string
     
-    CounterFrame:
-      type: object
-      required:
-        - color
-        - cornerStripe
-        - plinth
-        - extraSide
-      properties:
-        id:
-          type: string
-          format: uuid
-        color:
-          type: string
-        cornerStripe:
-          type: string
-        plinth:
-          type: string
-        extraSide:
-          type: string
-    
     Order:
       type: object
-      required:
-        - orderInfo
-        - spine
-        - spineAdditionalInformation
-        - doors
-        - doorsAdditionalInformation
-        - handles
-        - handlesAdditionalInformation
-        - counterTops
-        - counterTopsAdditionalInformation
-        - drawersInfo
-        - domesticAppliance
-        - domesticAppliancesAdditionalInformation
-        - otherProducts
-        - otherProductsAdditionalInformation
-        - intermediateSpaces
-        - intermediataeSpacesAdditionalInformation
-        - sinks
-        - sinksAdditionalInformation
-        - electricProducts
-        - electricProductsAdditionalInformation
-        - installation
-        - moreInformation
-        - customerFIles
-        - orderFiles
       properties:
         id:
           type: string
           format: uuid
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
-        counterFrame:
-           $ref: '#/components/schemas/CounterFrame'
-        counterFrameAdditionalInformation:
-          type: string
         doors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Door'
-        doorsAdditionalInformation:
-          type: string
+          $ref: '#/components/schemas/DoorsInfo'
         handles:
           type: array
           items:
             $ref: '#/components/schemas/Handle'
-        handlesAdditionalInformation:
-          type: string
         counterTops:
           type: array
           items:
             $ref: '#/components/schemas/CounterTop'
-        counterTopsAdditionalInformation:
-          type: string
+        exceptionsFromPlans:
+          type: array
+          items:
+            type: string
         drawersInfo:
           $ref: '#/components/schemas/DrawersInfo'
         domesticAppliances:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
-        domesticAppliancesAdditionalInformation:
-          type: string
         otherProducts:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
-        otherProductsAdditionalInformation:
-          type: string
         intermediateSpaces:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
-        intermediateSpacesAdditionalInformation:
-          type: string
         sinks:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
-        sinksAdditionalInformation:
-          type: string
         electricProducts:
           type: array
           items:
             $ref: '#/components/schemas/GenericProduct'
-        electricProductsAdditionalInformation:
-          type: string
         installation:
           $ref: '#/components/schemas/Installation'
         moreInformation:
@@ -1195,3 +1056,4 @@ components:
         modifierId:
           type: string
           format: uuid
+        
