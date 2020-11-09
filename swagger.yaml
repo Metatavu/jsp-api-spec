@@ -1103,7 +1103,7 @@ components:
         - otherProducts
         - otherProductsAdditionalInformation
         - intermediateSpaces
-        - intermediataeSpacesAdditionalInformation
+        - intermediateSpacesAdditionalInformation
         - sinks
         - sinksAdditionalInformation
         - electricProducts
