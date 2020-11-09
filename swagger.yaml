@@ -1071,6 +1071,7 @@ components:
         - cornerStripe
         - plinth
         - extraSide
+        - additionalInformation
       properties:
         id:
           type: string
