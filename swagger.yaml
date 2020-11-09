@@ -1111,7 +1111,7 @@ components:
         - electricProductsAdditionalInformation
         - installation
         - moreInformation
-        - customerFIles
+        - customerFiles
         - orderFiles
       properties:
         id:
