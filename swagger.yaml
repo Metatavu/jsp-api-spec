@@ -984,6 +984,7 @@ components:
         - ELECTRIC
         - INTERMEDIATE_SPACE
         - OTHER
+        - MECHANISM
     
     Installation:
       type: object
@@ -1109,6 +1110,8 @@ components:
         - sinksAdditionalInformation
         - electricProducts
         - electricProductsAdditionalInformation
+        - mechanisms
+        - mechanismsAdditionalInformation
         - installation
         - moreInformation
         - customerFiles
@@ -1170,6 +1173,12 @@ components:
           items:
             $ref: '#/components/schemas/GenericProduct'
         electricProductsAdditionalInformation:
+          type: string
+        mechanisms:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericProduct'
+        mechanismsAdditionalInformation:
           type: string
         installation:
           $ref: '#/components/schemas/Installation'
