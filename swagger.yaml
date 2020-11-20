@@ -816,47 +816,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /files/{fileId}/download:
-    get:
-      summary: Download a file
-      operationId: downloadFile
-      parameters: 
-        - name: fileId
-          in: path
-          description: File id
-          required: true
-          schema:
-            type: string
-            format: uuid
-      tags:
-        - Files
-      responses:
-        '200':
-          description: Downloaded file
-          content:
-            application/octet-stream:
-              schema:
-                type: string
-                format: binary
-        '400':
-          description: Invalid request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: Unauthorized request error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
 components:
   securitySchemes:
     bearerAuth:
