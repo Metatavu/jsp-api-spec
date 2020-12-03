@@ -985,6 +985,13 @@ components:
         - INTERMEDIATE_SPACE
         - OTHER
         - MECHANISM
+        
+    OrderStatus:
+      type: string
+      enum:
+        - DRAFT
+        - ORDER
+        - ARCHIVED
     
     Installation:
       type: object
@@ -1092,6 +1099,7 @@ components:
       type: object
       required:
         - orderInfo
+        - orderStatus
         - counterFrame
         - doors
         - doorsAdditionalInformation
@@ -1120,6 +1128,8 @@ components:
         id:
           type: string
           format: uuid
+        orderStatus:
+           $ref: '#/components/schemas/OrderStatus'
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
         counterFrame:
