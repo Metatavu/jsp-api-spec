@@ -990,6 +990,7 @@ components:
       type: string
       enum:
         - DRAFT
+        - OFFER
         - ORDER
         - ARCHIVED
     
