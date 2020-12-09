@@ -1140,6 +1140,9 @@ components:
         sentToCustomerAt:
           type: string
           format: date-time
+        seenByManagerAt:
+          type: string
+          format: date-time
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
         counterFrame:
