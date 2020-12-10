@@ -1072,6 +1072,12 @@ components:
           format: date-time
         additionalInformation:
           type: string
+        price:
+          type: number
+          format: double
+        priceTaxFree:
+          type: number
+          format: double
     
     CounterFrame:
       type: object
@@ -1131,6 +1137,12 @@ components:
           format: uuid
         orderStatus:
            $ref: '#/components/schemas/OrderStatus'
+        sentToCustomerAt:
+          type: string
+          format: date-time
+        seenByManagerAt:
+          type: string
+          format: date-time
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
         counterFrame:
