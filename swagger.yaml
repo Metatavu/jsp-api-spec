@@ -1018,6 +1018,8 @@ components:
           format: uuid
         name:
           type: string
+        url:
+          type: string
         createdAt:
           type: string
           format: date-time
