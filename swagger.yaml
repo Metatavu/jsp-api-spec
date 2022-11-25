@@ -25,13 +25,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /orders:
     get:
       summary: List orders
       operationId: listOrders
       tags:
-       - Orders
+        - Orders
       responses:
         '200':
           description: An array of orders
@@ -59,7 +59,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    
+
     post:
       summary: Create a new order
       operationId: createOrder
@@ -96,7 +96,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'      
-  
+
   /orders/{orderId}:
     get:
       summary: Find an order
@@ -110,7 +110,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Orders
+        - Orders
       responses:
         '200':
           description: A found order
@@ -136,7 +136,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-                
+
     put:
       summary: Update an order
       operationId: updateOrder
@@ -194,7 +194,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Orders
+        - Orders
       responses:
         '204':
           description: An empty response indicating a successful removal
@@ -216,13 +216,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /doors:
     get:
       summary: List doors
       operationId: listDoors
       tags:
-       - Doors
+        - Doors
       responses:
         '200':
           description: An array of doors
@@ -250,7 +250,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /doors/{doorId}:
     get:
       summary: Find a door 
@@ -264,7 +264,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Doors
+        - Doors
       responses:
         '200':
           description: Found door
@@ -296,7 +296,7 @@ paths:
       summary: List countertops
       operationId: listCounterTops
       tags:
-       - CounterTops
+        - CounterTops
       responses:
         '200':
           description: An array of countertops
@@ -324,7 +324,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /counterTops/{counterTopId}:
     get:
       summary: Find a countertop
@@ -338,7 +338,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - CounterTops
+        - CounterTops
       responses:
         '200':
           description: A found countertop
@@ -370,7 +370,7 @@ paths:
       summary: List handles
       operationId: listHandles
       tags:
-       - Handles
+        - Handles
       responses:
         '200':
           description: An array of handles
@@ -398,7 +398,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /handles/{handleId}:
     get:
       summary: Find a handle
@@ -412,7 +412,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Handles
+        - Handles
       responses:
         '200':
           description: A found handle
@@ -443,7 +443,7 @@ paths:
       summary: List drawer infos
       operationId: listDrawerInfos
       tags:
-       - Drawers
+        - Drawers
       responses:
         '200':
           description: An array of drawer infos
@@ -471,7 +471,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /drawers/{drawersInfoId}:
     get:
       summary: Find a drawers info
@@ -485,7 +485,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Drawers
+        - Drawers
       responses:
         '200':
           description: A found drawers info
@@ -511,13 +511,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
- 
+
   /genericProducts:
     get:
       summary: List generic products
       operationId: listGenericProducts
       tags:
-       - GenericProducts
+        - GenericProducts
       parameters: 
         - name: productType
           in: query
@@ -552,7 +552,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /genericProducts/{productId}:
     get:
       summary: Find a generic product
@@ -566,7 +566,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - GenericProducts
+        - GenericProducts
       responses:
         '200':
           description: A found product
@@ -592,7 +592,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-                
+
   /installations:
     get:
       summary: List installations
@@ -626,7 +626,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /installations/{installationId}:
     get:
       summary: Find an installation
@@ -640,7 +640,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Installations
+        - Installations
       responses:
         '200':
           description: Found installation
@@ -666,7 +666,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /counterFrames:
     get:
       summary: List counter frames
@@ -700,7 +700,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
+
   /counterFrames/{counterFrameId}:
     get:
       summary: Find a counter frame
@@ -714,7 +714,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - CounterFrames
+        - CounterFrames
       responses:
         '200':
           description: Found counter frame
@@ -740,8 +740,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  
-  
+
   /files:
     get:
       summary: List files
@@ -789,7 +788,7 @@ paths:
             type: string
             format: uuid
       tags:
-       - Files
+        - Files
       responses:
         '200':
           description: A found file
@@ -956,8 +955,8 @@ components:
     Installation:
       type: object
       required:
-       - isCustomerInstallation
-       - additionalInforamtion
+        - isCustomerInstallation
+        - additionalInformation
       properties:
         id:
           type: string
@@ -1097,17 +1096,11 @@ components:
           type: string
           format: uuid
         orderStatus:
-           $ref: '#/components/schemas/OrderStatus'
-        sentToCustomerAt:
-          type: string
-          format: date-time
-        seenByManagerAt:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/OrderStatus'
         orderInfo:
           $ref: '#/components/schemas/OrderInfo'
         counterFrame:
-           $ref: '#/components/schemas/CounterFrame'
+          $ref: '#/components/schemas/CounterFrame'
         doors:
           type: array
           items:
@@ -1171,11 +1164,11 @@ components:
         customerFiles:
           type: array
           items:
-             $ref: '#/components/schemas/FileInformation'
+            $ref: '#/components/schemas/FileInformation'
         orderFiles:
           type: array
           items:
-             $ref: '#/components/schemas/FileInformation'
+            $ref: '#/components/schemas/FileInformation'
         createdAt:
           type: string
           format: date-time
